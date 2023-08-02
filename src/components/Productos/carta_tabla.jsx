@@ -5,7 +5,7 @@ const CartaTabla = () => {
 
   useEffect(() => {
     // Realiza la solicitud HTTP a tu API y obtén los datos de la base de datos
-    fetch('http://localhost:3000/api/productos')
+    fetch('http://localhost:3001/api/productos')
       .then(response => response.json())
       .then(data => setData(data))
       .catch(error => console.log(error));

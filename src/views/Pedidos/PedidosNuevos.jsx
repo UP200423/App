@@ -10,14 +10,8 @@ import OpcionesPedidos from "../../components/Opciones_Pedidos/OpcionesPedidos.j
 function PedidosNuevo() {
   return (
     <div className="pedidospage">
-    
-      <Header/>
-      {/* <Pedidos/> */}
       <OpcionesPedidos/>
       <Pedidos/>
-      {/* <PedidosList /> */}
-
-      {/* <Footer/> */}
     </div>
   );
 }

@@ -7,13 +7,13 @@ import OpcionesProductos from "../../components/Opciones_Productos/OpcionesProdu
 
 function CartaTablaView() {
     return (
-        
         <React.Fragment>
             <Header />
             <OpcionesProductos />
             <CartaTabla />
             <Footer />
             </React.Fragment>
+
     );
 }
 

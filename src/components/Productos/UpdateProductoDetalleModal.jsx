@@ -28,7 +28,7 @@ function UpdateProductoDetalleModal(props) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(UpdatedProducto),
         };
-        const ruta= `http://localhost:3000/api/producto_detalle/${id_detalle}/${id_producto}`
+        const ruta= `http://localhost:3001/api/producto_detalle/${id_detalle}/${id_producto}`
         // console.log(ruta);
         fetch(ruta, requestOptions)
             .then((res) => res.json())

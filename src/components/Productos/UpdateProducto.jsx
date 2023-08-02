@@ -12,7 +12,7 @@ function UpdateProducto({id, nombre, tipo, precio, descripcion, id_tipo}) {
   const [tipoProducto, setTipoProducto] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/tiposProductos")
+    fetch("http://localhost:3001/api/tiposProductos")
       .then((res) => res.json())
       .then((tipoProducto) => setTipoProducto(tipoProducto));
   }, []);

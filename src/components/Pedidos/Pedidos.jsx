@@ -5,16 +5,18 @@ import ProdcutosAgregados from "./ProductosAgregados";
 
 const Pedidos = () => {
   const [pedidos, setPedidos] = useState([]);
-  const [total, setTotal] = useState(0);
+  // const [total, setTotal] = useState(0);
   const [pedidoInput, setPedidoInput] = useState("");
   const [productos, setProductos] = useState([]);
+  const [productosCopia, setProductosCopia] = useState([]);
+
   const [mesa, setMesa] = useState(0);
   const [insertedIdPedidos, setInsertedIdPedidos] = useState(0);
   useEffect(() => {
     // console.log("InsertedIdPedidos: " + insertedIdPedidos);
-    let rows=false;
+    let rows = false;
     pedidos.map((ped) => {
-      rows=true;
+      rows = true;
       const jsonPedidos = {
         id_pedido: insertedIdPedidos,
         id_producto: ped.id_producto,
@@ -36,12 +38,24 @@ const Pedidos = () => {
         alert("no fue posible hacer el registro del pedido");
       }
     });
-    if(rows) window.location.replace("/pedidos");
+    if (rows) window.location.replace("/pedidos");
   }, [insertedIdPedidos]);
 
-  useEffect(() => {}, [pedidos]);
+  useEffect(() => { }, [pedidos]);
 
-  useEffect(() => {}, [productos]);
+  useEffect(() => {
+
+    fetch("http://localhost:3000/api/productos/" + pedidoInput)
+      .then((res) => res.json())
+      .then((productos) => {
+        setProductos(productos)
+        setProductosCopia(productos)
+      })
+      .catch((error) => {
+        alert("No fue posible consultar la base de datos, revisa tu conexión a internet, si persisten los problemas contacta a tu técnico")
+        console.log(error)
+      });
+  }, []);
   useEffect(() => {
     buscarProduto();
   }, [pedidoInput]);
@@ -50,7 +64,7 @@ const Pedidos = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if ((pedidos.length === 0) || (mesa === 0)) {
+    if (pedidos.length === 0 || mesa === 0) {
       alert(
         "Agrega primero un producto y asegúrate de colocar el número de mesa"
       );
@@ -74,16 +88,6 @@ const Pedidos = () => {
         }
       }
     }
-
-    // fetch("http://localhost:3000/api/pedidos", {
-    //   method: "POST",
-    //   body: JSON.stringify({ mesa: mesa }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((resjson) => console.log(resjson.insertId));
-
-    // console.log(pedidos);
-    // console.log(mesa);
   };
 
   //funcion para pasarla a cada elemento de la lista para agregar un producto al pedido
@@ -129,19 +133,18 @@ const Pedidos = () => {
     }
   };
   const buscarProduto = () => {
-    // e.preventDefault();
-    fetch("http://localhost:3000/api/productos/" + pedidoInput)
-      .then((res) => res.json())
-      .then((productos) => setProductos(productos));
-    // console.log(productos);
+
+    setProductosCopia(productos.filter((product) => {
+      return (product.nombre.toLowerCase().includes(pedidoInput.toLowerCase()))
+    }))
   };
 
   return (
-    <div>
+    <div className="container-fluid p-0 text-center bg-dark text-white" >
       <h1 style={{ color: "aliceblue" }}>Pedidos</h1>
 
       <form className="pedidos" onSubmit={(e) => handleSubmit(e)}>
-        <h2>Pedidos de la mesa</h2>
+
         <label htmlFor="input_mesa">No. de mesa </label>
         <br />
         <input
@@ -172,25 +175,42 @@ const Pedidos = () => {
             // console.log(pedidoInput);
           }}
         />
-        <h3>
-          Número de órdenes: <span>{total}</span>
-        </h3>
-        <ProdcutosAgregados
-          pedidos={pedidos}
-          eliminarPedido={eliminarPedido}
-          restarProducto={restarProducto}
-          createPedido={createPedido}
-        />
+        <br /> <br />
+        <div className="row">
+          <div
+            style={{ height: "600px", overflowY: "auto" }}
+            className="col-md-6 text-center bg-dark text-white"
+          >
+            <ProdcutosAgregados
+              key={2}
+              pedidos={pedidos}
+              eliminarPedido={eliminarPedido}
+              restarProducto={restarProducto}
+              createPedido={createPedido}
+              style={{ flex: "0 0 50%" }}
+            />
+          </div>
+
+          <div
+            style={{ height: "600px", overflowY: "auto" }}
+            className="col-md-6 text-center bg-dark text-white"
+          >
+            <ProductoBuscado
+              productos={productosCopia}
+              // pedidos={pedidos}
+              createPedido={createPedido}
+              style={{ flex: "0 0 50%" }}
+            />
+          </div>
+        </div>
         <div className="alinear-derecha">
-          <input className="boton w-sh-100" type="submit" value="Enviar" />
+          <input
+            className="button btn btn-primary"
+            type="submit"
+            value="Enviar"
+          />
         </div>
       </form>
-      <h1>Coincidencias</h1>
-      <ProductoBuscado
-        productos={productos}
-        // pedidos={pedidos}
-        createPedido={createPedido}
-      />
     </div>
   );
 };

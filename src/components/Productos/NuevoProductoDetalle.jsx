@@ -13,7 +13,7 @@ function NuevoProductoDetalle() {
   const { id_producto } = useParams();
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/insumos")
+    fetch("http://localhost:3001/api/insumos")
       .then((res) => res.json())
       .then((insumos) => setTipoProducto(insumos));
   }, []);

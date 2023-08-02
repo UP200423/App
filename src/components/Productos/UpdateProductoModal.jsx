@@ -21,7 +21,7 @@ function UpdateProductoModal(props) {
     const [prioridad, setPrioriad] = useState(props.prioridad);
     const [insertedInsumo, setInserted] = useState({})  ;
 
-    // console.log("el tipo es" + id_tipo);
+    console.log("el tipo es" + id_tipo);
 
     const handleSubmit = () => {
         // e.preventDefault();
@@ -38,7 +38,7 @@ function UpdateProductoModal(props) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(UpdatedProducto),
         };
-        const ruta= "http://localhost:3000/api/productos/" + id
+        const ruta= "http://localhost:3001/api/productos/" + id
         // console.log(ruta);
         fetch(ruta, requestOptions)
             .then((res) => res.json())
@@ -128,7 +128,7 @@ function UpdateProductoModal(props) {
                             onChange={(e) => setPrioriad(e.target.value)}
                         >
                             <option value={-1} disabled>
-                                {prioridad}
+                                Selecciona una prioridad
                             </option>
                             {(() => {
                                 const opciones = [];

@@ -10,7 +10,7 @@ function Hero() {
         <h1>Bienvenidos</h1>
         <br />
         <p>
-          Aq.uí se come como en casa <span>pero sin tener que lavar los platos</span>
+          Aquí se come como en casa <span>pero sin tener que lavar los platos</span>
         </p>
         <a href="/" className="cta-main">
           Hacer pedido

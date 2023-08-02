@@ -31,7 +31,7 @@ function AddProductoDetalleModal(props) {
             body: JSON.stringify(newProductoDetalle),
         };
 
-        fetch("http://localhost:3000/api/producto_detalle", requestOptions)
+        fetch("http://localhost:3001/api/producto_detalle", requestOptions)
             .then((res) => res.json())
             .then((producto) => setInserted(producto));
         console.log(insertedProducto);

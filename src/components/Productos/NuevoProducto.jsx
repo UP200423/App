@@ -10,13 +10,12 @@ function NuevoProducto() {
   const [modalShow, setModalShow] = React.useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/tiposProductos")
+    fetch("http://localhost:3001/api/tiposProductos")
       .then((res) => res.json())
-      .then((tipoProdu) => setTipoProducto(tipoProdu));
-      
+      .then((tipoProducto) => setTipoProducto(tipoProducto));
   }, []);
 
-  // console.log(tipoInsumo)
+  console.log("los tipos de producto son :" + tipoProducto);
   return (
     <>
       <Button variant="primary" onClick={() => setModalShow(true)}>

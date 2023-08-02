@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "./AddProducto.css";
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function AddProductoModal(props) {
     const { tipoproducto } = props;
@@ -15,11 +15,22 @@ function AddProductoModal(props) {
     const [precio, setPrecio] = useState(0);
     const [descripcion, setDescripcion] = useState("");
     const [prioridad, setPrioriad] = useState(1);
+    const [nuevoTipo, setNuevoTipo] = useState('');
+
+    const tamanoTipoProducto = tipoproducto.length;
+
+
+    //console.log("tamaño tipo producto:" + tamanoTipoProducto);
+    //console.log(tipoproducto[tamanoTipoProducto].id_tipo_prod);
+    //console.log("el tamaño es " + tipoproducto.length);
+
+    //console.log(tipoProductoMaxId.max_id)
 
     const [insertedProducto, setInserted] = useState({});
 
+    const [mostrarOtro, setMostrarOtro] = useState(false);
+
     const handleSubmit = () => {
-        // e.preventDefault();
 
         const newProducto = {
             nombre: nombre,
@@ -40,7 +51,7 @@ function AddProductoModal(props) {
         console.log(insertedProducto);
         // .then((data) => console.log(data))
 
-        console.log(newProducto);
+        //console.log(newProducto);
     };
 
     return (
@@ -71,12 +82,16 @@ function AddProductoModal(props) {
                     </Form.Group>
 
                     <Form.Group>
+
                         <Form.Label>Tipo de producto:</Form.Label>
                         <Form.Select
                             required
                             defaultValue={-1}
                             aria-label="tipo_de_producto"
-                            onChange={(e) => setTipo(e.target.value)}
+                            onChange={(e) => {
+                                setTipo(e.target.value);
+                                setMostrarOtro(e.target.value === "otro");
+                            }}
                         >
                             <option value={-1} disabled>
                                 Selecciona un tipo de producto
@@ -88,11 +103,22 @@ function AddProductoModal(props) {
                                     </option>
                                 ))
                             ) : (
-                                <option disabled>
-                                    No hay tipos de producto disponibles
-                                </option>
+                                <option disabled>No hay tipos de producto disponibles</option>
                             )}
+                            <option value="otro">
+                                Otro:
+                            </option>
                         </Form.Select>
+                        {mostrarOtro && (
+                            <Form.Group>
+                                <Form.Label>Escribe el tipo de producto:</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Ingresa el tipo de producto"
+                                    onChange={(e) => setNuevoTipo(e.target.value)}
+                                />
+                            </Form.Group>
+                        )}
                     </Form.Group>
 
 
@@ -124,7 +150,7 @@ function AddProductoModal(props) {
                         <Form.Select
                             required
                             defaultValue={-1}
-                            aria-label="tipo_de_producto"
+                            aria-label="prioridad_de_producto"
                             onChange={(e) => setPrioriad(e.target.value)}
                         >
                             <option value={-1} disabled>

@@ -7,7 +7,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function OpcionesPedidos() {
   return (
-    <Navbar expand="sm" className="bg-body-tertiary" sticky="top"   >
+    <Navbar expand="sm" className="bg-body-tertiary" bg="dark" data-bs-theme="dark" sticky="top"   >
       <Container fluid>
         <Navbar.Brand href="/pedidos">Pedidos</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -19,20 +19,8 @@ function OpcionesPedidos() {
           >
             <Nav.Link href="/pedidos" >Activos</Nav.Link>
             <Nav.Link href="/pedidos/nuevo">Nuevo</Nav.Link>
-            
-            <Nav.Link href="#">
-              Vista de Tabla
-            </Nav.Link>
           </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
+          
         </Navbar.Collapse>
       </Container>
     </Navbar>
