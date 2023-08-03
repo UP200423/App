@@ -6,7 +6,7 @@
 
 .fondo-hero{
     background: linear-gradient(to bottom, rgb(0 0 0/ .75), 
-    rgb(0 0 0 / .5)), url(../../img/fondo_Restaurante.avif);
+    rgb(0 0 0 / .5)), url(../../img/restaurant.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

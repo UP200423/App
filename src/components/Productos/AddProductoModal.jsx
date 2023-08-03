@@ -7,6 +7,7 @@ import Modal from "react-bootstrap/Modal";
 import "./AddProducto.css";
 import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
+import SubirImagen from './SubirImagen';
 
 function AddProductoModal(props) {
     const { tipoproducto } = props;
@@ -15,13 +16,33 @@ function AddProductoModal(props) {
     const [precio, setPrecio] = useState(0);
     const [descripcion, setDescripcion] = useState("");
     const [prioridad, setPrioriad] = useState(1);
-    const [nuevoTipo, setNuevoTipo] = useState('');
+    const [nuevo_tipo_id, setNuevoTipoId] = useState({});
+    const [nuevo_tipo, setNuevoTipo] = useState("");
 
-    const tamanoTipoProducto = tipoproducto.length;
+    useEffect(() => {
+        if (tipoproducto && tipoproducto.length > 0) {
+            var tamano = tipoproducto.length;
+            var last_reg = tipoproducto[tamano - 1];
+            setNuevoTipoId(last_reg["id_tipo_prod"] + 1);
+        }
+    }, [tipoproducto]);
 
 
+    console.log("id nuevo" + nuevo_tipo_id);
+    //console.log(tamanio);
+
+    //const XD = nuevoTipo["id_tipo_prod"];
+
+    console.log("el nuevo tipo_id es: " + nuevo_tipo_id);
+    console.log("el nuevo tipo es: " + nuevo_tipo);
+    //console.log(XD);
+    //console.log("hola");
+    //console.log(tipoproducto[0]);
+
+    //console.log("el tamaño es:" + tipoproducto.length);
+    //const tamanoTipoProducto = tipoproducto.length;
     //console.log("tamaño tipo producto:" + tamanoTipoProducto);
-    //console.log(tipoproducto[tamanoTipoProducto].id_tipo_prod);
+
     //console.log("el tamaño es " + tipoproducto.length);
 
     //console.log(tipoProductoMaxId.max_id)
@@ -37,7 +58,8 @@ function AddProductoModal(props) {
             id_tipo_prod: tipo,
             descripcion: descripcion,
             precio: precio,
-            prioridad: prioridad
+            prioridad: prioridad,
+            nombre_tipo: nuevo_tipo
         };
         const requestOptions = {
             method: "POST",
@@ -48,10 +70,10 @@ function AddProductoModal(props) {
         fetch("http://localhost:3001/api/productos", requestOptions)
             .then((res) => res.json())
             .then((producto) => setInserted(producto));
-        console.log(insertedProducto);
+        //console.log(insertedProducto);
         // .then((data) => console.log(data))
 
-        //console.log(newProducto);
+        ////console.log(newProducto);
     };
 
     return (
@@ -90,7 +112,10 @@ function AddProductoModal(props) {
                             aria-label="tipo_de_producto"
                             onChange={(e) => {
                                 setTipo(e.target.value);
-                                setMostrarOtro(e.target.value === "otro");
+                                setMostrarOtro(e.target.value == nuevo_tipo_id);
+                                //setMostrarOtro(true);
+                                console.log("ntid " + nuevo_tipo_id);
+                                console.log("mo " + mostrarOtro);
                             }}
                         >
                             <option value={-1} disabled>
@@ -105,7 +130,7 @@ function AddProductoModal(props) {
                             ) : (
                                 <option disabled>No hay tipos de producto disponibles</option>
                             )}
-                            <option value="otro">
+                            <option value={nuevo_tipo_id} name="otro">
                                 Otro:
                             </option>
                         </Form.Select>
@@ -119,6 +144,7 @@ function AddProductoModal(props) {
                                 />
                             </Form.Group>
                         )}
+
                     </Form.Group>
 
 
@@ -180,6 +206,7 @@ function AddProductoModal(props) {
 
 
                 </Form>
+
             </Modal.Body>
             <Modal.Footer></Modal.Footer>
         </Modal>

@@ -7,7 +7,7 @@ function PedidosList() {
   const [pedidos, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://192.168.158.77:3000/api/pedidos")
+    fetch("http://localhost:3000/api/pedidos")
       .then((res) => res.json())
       .then((pedidos) => setData(pedidos))
       .catch((error) => {
@@ -37,7 +37,7 @@ function PedidosList() {
               <div key={pedido.id_pedido} className="cont" >
                 <PedidosActivos
 
-                  id_pedido={pedido.id_pedido} fecha={pedido.fecha} total={pedido.total} activo={pedido.activo} mesa={pedido.mesa}
+                  id_pedido={pedido.id_pedido} fecha={pedido.fecha} total={pedido.total} activo={pedido.activo} mesa={pedido.mesa} pagado={pedido.pagado}
 
                 />
               </div>

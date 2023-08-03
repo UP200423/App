@@ -3,6 +3,7 @@ import { DeleteProducto } from "./funciones";
 import { Form } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import UpdateProducto from "./UpdateProducto";
+import SubirImagen from './SubirImagen';
 
 const RowTableProductos = (props) => {
     const { id_producto, nombre, descripcion, precio, tipo, id_tipo, prioridad } = props;
@@ -15,6 +16,11 @@ const RowTableProductos = (props) => {
             <td>{tipo}</td>
             <td>{prioridad}</td>
             <td>
+                <SubirImagen 
+                    id={id_producto.toString()}
+                ></SubirImagen>
+            </td>
+            <td>
                 <button type="button" class="btn btn-primary" onClick={() => (window.location.href = `/CartaTablaDetalle/${id_producto}`)}>DETALLES</button>
             </td>
             <td>
@@ -22,7 +28,7 @@ const RowTableProductos = (props) => {
                     <Form.Group>
                         <Button variant="danger"
                             type="submit"
-                        >Eliminar</Button>
+                        >ELIMINAR</Button>
 
                     </Form.Group>
                 </Form>

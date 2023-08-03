@@ -29,7 +29,7 @@ function Container() {
             if (item.prioridad === 1) {
               return (
                 <TarjetaRest
-                  imagen={imagenSandwich}
+                  imagen={item.imagen}
                   nombre={item.nombre}
                   descripcion={item.descripcion}
                   valor={item.precio}

@@ -12,9 +12,9 @@ function Hero() {
         <p>
           Aquí se come como en casa <span>pero sin tener que lavar los platos</span>
         </p>
-        <a href="/" className="cta-main">
+        {/* <a href="/" className="cta-main">
           Hacer pedido
-        </a>
+        </a> */}
       </div>
     </section>
     </div>

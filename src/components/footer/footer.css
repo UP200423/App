@@ -8,7 +8,10 @@
   .wrap-footer{
     background-color: var(--main-c);
     padding: 2rem 0;
-    
+    -webkit-box-shadow: 1px 1px 70px 3px rgba(0,0,0,0.59);
+    -moz-box-shadow: 1px 1px 70px 3px rgba(0,0,0,0.59);
+    box-shadow: 1px 1px 70px 3px rgba(0,0,0,0.59);
+    margin-top: 4rem;
   }
 
  
@@ -20,12 +23,27 @@
             grid-template-columns: repeat(3, 1fr); 
             column-gap: 1.2rem;
         }
+
     }
     
   
 
   .networks{
+    display: flex;
+    flex-direction: column;
     text-align: center;
+    font-weight: bolder;
+    gap: 12px;
+  }
+  @media (max-width: 759px)  {
+       .networks{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+       }
+       .Correo_Crazy a{
+        
+       }
   }
 
   .general{
@@ -33,5 +51,7 @@
   }
 
   .otros{
-    text-align: center;
+    text-align: justify;
+    margin: auto 15px;
+    font-weight: bolder;
   }

@@ -15,22 +15,23 @@ function Header() {
         <div className="wrap-nav-header">
           <nav className="nav-header">
             <input type="checkbox" id="check" />
+            
             <label htmlFor="check" className="checkbtn">
-              <i className="toggle-menu">&lt;
+              <i className="toggle-menu">
               <img src={menu} alt="Menu"/>
               </i>
             </label>
-            <ul className="main-menu">
+              <ul className="main-menu">
               
                 <li className="menu-item"> {/**key para asigar un identificador unico que en este caso seria index */}
-                  
+              
                   <a href='/Carta'> Carta</a>
                   {/* <a href='/Estadisticas'>Estadisticas</a> */}
                   <a href='/Pedidos'> Pedidos</a>
-                  <a href='/Insumos'> Insumos</a>
+                  <a href='/insumos/card'> Insumos</a>
                 </li>
               
-            </ul>
+              </ul>
           </nav>
         </div>
       </div>

@@ -18,7 +18,7 @@ function OpcionesProductos() {
   return (
     <Navbar expand="sm" className="bg-body-tertiary" sticky="top"   >
       <Container fluid>
-        <Navbar.Brand href="/Carta">Productos</Navbar.Brand>
+        <Navbar.Brand href="#">Pedidos</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -26,12 +26,13 @@ function OpcionesProductos() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="/carta">Carta</Nav.Link>
-            <Nav.Link href="/cartatabla">Tabla</Nav.Link>
-            
-      
+            <Nav.Link href="#action1">Activos</Nav.Link>
+            <Nav.Link href="#action2">Lista de Tabla</Nav.Link>
+                
             <NuevoProducto/>
-            
+            <Nav.Link href="/TablaTipoProducto">
+              Administrar Tipos
+            </Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control

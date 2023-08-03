@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import UpdateProductoDetalle from "./UpdateProductoDetalle";
 
 const RowTableProductos = (props) => {
-    const {id_producto, id_detalle, nombre_producto, tipo_producto, id_insumo, nombre_insumo, tipo_insumo, cantidad} = props;
+    const {id_producto, id_detalle, nombre_producto, tipo_producto, id_insumo, nombre_insumo, tipo_insumo, cantidad, abreviacion} = props;
     return (
         <tr key={id_detalle}>
             <td>{id_producto}</td>
@@ -15,7 +15,7 @@ const RowTableProductos = (props) => {
             <td>{id_insumo}</td>
             <td>{nombre_insumo}</td>
             <td>{tipo_insumo}</td>
-            <td>{cantidad}</td>
+            <td>{cantidad + " " + abreviacion}</td>
             <td>
                 <Form onSubmit={() => DeleteProductoDetalle(id_detalle, id_producto)}>
                     <Form.Group>

@@ -43,7 +43,7 @@ function UpdateInsumo({id, nombre, tipo, unidad, descripcion, cantidad}) {
 
         unidadesmedida= {unidadesMedida}
         show={modalShow}
-        backdrop="static"
+        backdrop={true}
         onHide={() => setModalShow(false)}
         tipoinsumo = {tipoInsumo}
         nombre={nombre}

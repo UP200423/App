@@ -149,20 +149,19 @@ const Pedidos = () => {
         <br />
         <input
           id="input_mesa"
-          placeholder="Numero de mesa"
+          placeholder="Numero"
           type="number"
           onChange={(e) => {
             setMesa(e.target.value);
           }}
           min={0}
-          style={{
-            width: 100,
-            // height: 100,
-            // backgroundColor: 'skyblue',
-          }}
+          
         />
+        
+        
         <br />
-        <br />
+
+        <div className="Buscar-Productos">
         <label htmlFor="input_buscar">Buscar Producto</label>
         <input
           id="input_buscar"
@@ -176,6 +175,7 @@ const Pedidos = () => {
           }}
         />
         <br /> <br />
+        </div>
         <div className="row">
           <div
             style={{ height: "600px", overflowY: "auto" }}

@@ -19,7 +19,7 @@ function InsumosIndividual(props) {
         <h3>Tipo de insumo: {nombre_tipo} </h3>
         <h3>Unidad de medida: {nombre_unidad} </h3>
         <h3>Descripcion de insumo: {descripcion} </h3>
-        <h3>Cantidad del insumo: {cantidad}</h3>
+        <h3>Cantidad del insumo: {cantidad + " " + abreviacion }</h3>
 
       </div>
       <Form onSubmit={() => DeleteInsumo(id)}>

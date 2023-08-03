@@ -1,6 +1,7 @@
 :root{
   --main-c: #ffc300;
   --black-c: #000;
+  --white-c: #fff;
 
 }
 
@@ -14,8 +15,8 @@ header.main-header{
     display: flex;
     justify-content: space-between;
     padding: 1rem;
-    background-color: transparent;
-    background-image: url(../../img/fondo.avif);
+    background-color: var(--black-c);
+    /* background-image: url(../../img/fondo.avif); */
     z-index: 999;
   }
   .wrap-logo-header{
@@ -27,8 +28,9 @@ header.main-header{
   .logo-header{
     font-weight: bold;
     font-size: 1.2rem;
-    color: #fff;
+    color: var(--white-c);
   }
+
 
 
   
@@ -46,6 +48,7 @@ header.main-header{
 
 ul.main-menu{
   display: flex;
+  
   width: 100%;
   z-index: 99;
   margin: 0;
@@ -55,31 +58,41 @@ ul.main-menu{
   font-size: 1.1rem;
 }
 
-ul.main-menu #nav-main-contact{
-  display: flex;
-  align-items: center;
-  padding: .5rem 1rem;
-  background-color: var(--main-c);
-  color: #fff;
-}
 
-ul.main-menu #nav-main-contact a:hover{
-  color: var(--black-c);
-}
+
+/* ul.main-menu a:hover{
+  color: var(--white-c);
+} */
 
 li.menu-item{
   margin: .75rem;
   display: flex;
 }
+
 li.menu-item a{
   padding: .5rem 1rem;
-  color: #fff;
+  color: var(--white-c);
+  text-decoration: none;
 }
 li.menu-item a:hover{
-  color: var(--main-c);
+  font-weight: bold;
+  color: var(--white-c);
+  /* -webkit-text-stroke: .5px black; */
+  background-color: var(--main-c);
   
 }
 
+
+/*prueba*/
+
+
+
+
+
+
+
+
+/*prueba final*/
 i.toggle-menu img{
   width: 27px;
   z-index: 99;
@@ -129,13 +142,15 @@ input#check{
   }
   .logo-header, li.menu-item a{
       color: #222;
+      
   }
 
   i.toggle-menu{
       display: flex;
+      /* background-color: none; */
   }
 
-  ul.main-menu, #nav-main-contac{
+  ul.main-menu{
       display: none;
       left: 0;
       margin: 0;
@@ -146,7 +161,7 @@ input#check{
   ul.main-menu{
       position: fixed;
       background-color: #fff;
-
+      
   }
 
   label.checkbtn{
@@ -169,6 +184,7 @@ input#check{
       height: 100vh;
       top: 0;
       font-size: 2rem;
+      
   }
 
 }

@@ -1,19 +1,34 @@
 import React from "react";
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import Pedidos from "../../components/Pedidos/Pedidos.jsx";
-import Header from "../../components/header/header.jsx";
-import Footer from "../../components/footer/footer.jsx";
-// import Button from "react-bootstrap/Button";
 import OpcionesPedidos from "../../components/Opciones_Pedidos/OpcionesPedidos.jsx";
-// import PedidosList from "../../components/Pedidos/PedidosList.jsx";
+import "./PedidosPage.css";
 
 function PedidosNuevo() {
   return (
-    <div className="pedidospage">
+    <>
+    <div className="pedidos-page">
+    
       <OpcionesPedidos/>
       <Pedidos/>
     </div>
+
+    
+    </>
   );
 }
 
 export default PedidosNuevo;
+
+
+
+
+
+// <>
+// <Header>
+
+//   </Header>
+//   {/* {children} */}
+  
+// <Footer>
+//   </Footer>
+// </>

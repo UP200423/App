@@ -25,7 +25,7 @@ const CartaTablaDetalle = (props) => {
         <div class="card-header">
           <h2>Productos</h2>
         </div>
-        <div class="overflow-scroll">
+        <div class="overflow-scroll" style={{ maxHeight: '600px' }}>
           <table width="1000" class="table table-striped table-bordered align-middle tabla_busqueda">
             <thead>
               <tr>
@@ -37,7 +37,7 @@ const CartaTablaDetalle = (props) => {
                 <th scope="col">Insumo</th>
                 <th scope="col">Tipo de Insumo</th>
                 <th scope="col">Cantidad</th>
-                <th scope="col">Acciones</th>
+                <th scope="col" colspan="3">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -51,6 +51,7 @@ const CartaTablaDetalle = (props) => {
                 nombre_insumo = {item.nombre_insumo}
                 tipo_insumo = {item.tipo_insumo}
                 cantidad = {item.cantidad}
+                abreviacion = {item.abreviacion}
                 />
               ))}
             </tbody>

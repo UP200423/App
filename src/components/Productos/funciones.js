@@ -14,6 +14,20 @@ export function DeleteProducto(id) {
         // console.log(respuesta)
 }
 
+export function DeleteTipoProducto(id) {
+    
+    const requestOptions = {
+        method: "DELETE"
+    }
+    const ruta='http://localhost:3001/api/tiposProductos/'+ id;
+
+    fetch(ruta, requestOptions)
+            .then((res) => res.json())
+            .then((data)=>console.log(data))
+        
+    console.log("borrado " + id)
+}
+
 export function DeleteProductoDetalle(id_prod, id_det) {
     
     const requestOptions = {

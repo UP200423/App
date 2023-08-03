@@ -6,19 +6,33 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "./AddInsumo.css";
 import Form from "react-bootstrap/Form";
-import { useState} from "react";
+import { useState, useEffect } from "react";
 
 function UpdateInsumoModal(props) {
 
 
     const { unidadesmedida, tipoinsumo } = props;
-    const id=props.id;
+    const id = props.id;
     const [nombre, setNombre] = useState(props.nombre);
     const [tipo, setTipo] = useState(props.tipo);
     const [unidad, setUnidad] = useState(props.unidad);
     const [cantidad, setCantidad] = useState(props.cantidad);
     const [descripcion, setDescripcion] = useState(props.descripcion);
-    const [insertedInsumo, setInserted] = useState({})  ;
+    const [insertedInsumo, setInserted] = useState({});
+    const [nuevo_tipo_id, setNuevoTipoId] = useState({});
+    const [nuevo_tipo, setNuevoTipo] = useState("");
+    const [mostrarOtro, setMostrarOtro] = useState(false);
+
+    console.log("nuevo tipo id" + nuevo_tipo_id);
+    console.log("nuevo tipo" + nuevo_tipo);
+
+    useEffect(() => {
+        if (tipoinsumo && tipoinsumo.length > 0) {
+            var tamano = tipoinsumo.length;
+            var last_reg = tipoinsumo[tamano - 1];
+            setNuevoTipoId(last_reg["id_tipo"] + 1);
+        }
+    }, [tipoinsumo]);
 
     const handleSubmit = () => {
         // e.preventDefault();
@@ -29,13 +43,14 @@ function UpdateInsumoModal(props) {
             unidad_de_medida_id: unidad,
             descripcion: descripcion,
             cantidad: cantidad,
+            nombre_tipo: nuevo_tipo
         };
         const requestOptions = {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(UpdatedInsumo),
         };
-        const ruta= "http://localhost:3000/api/insumos/" + id
+        const ruta = "http://localhost:3000/api/insumos/" + id
         // console.log(ruta);
         fetch(ruta, requestOptions)
             .then((res) => res.json())
@@ -80,17 +95,39 @@ function UpdateInsumoModal(props) {
                             defaultValue={-1}
                             aria-label="tipo_de_insumo"
                             value={tipo}
-                            onChange={(e) => setTipo(e.target.value)}
+                            onChange={(e) => {
+                                setTipo(e.target.value)
+                                setMostrarOtro(e.target.value == nuevo_tipo_id) }
+                            }
+
                         >
                             <option value={-1} disabled>
-                                Selecciona un tipo de insumo
+                                {tipo}
                             </option>
-                            {tipoinsumo.map((tipo) => (
-                                <option key={tipo.id_tipo} value={tipo.id_tipo}>
-                                    {tipo.nombre}
-                                </option>
-                            ))}
+                            {tipoinsumo.length > 0 ? (
+                                tipoinsumo.map((tipo) => (
+                                    <option key={tipo.id_tipo} value={tipo.id_tipo}>
+                                        {tipo.nombre}
+                                    </option>
+                                ))
+                            ) : (
+                                <option disabled>No hay tipos de producto disponibles</option>
+                            )
+                            }
+                            <option value={nuevo_tipo_id} name="otro">
+                                Otro:
+                            </option>
                         </Form.Select>
+                        {mostrarOtro && (
+                            <Form.Group>
+                                <Form.Label>Escribe el tipo de producto:</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Ingresa el tipo de producto"
+                                    onChange={(e) => setNuevoTipo(e.target.value)}
+                                />
+                            </Form.Group>
+                        )}
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Unidad de medida:</Form.Label>
@@ -135,13 +172,13 @@ function UpdateInsumoModal(props) {
                             onChange={(e) => setDescripcion(e.target.value)}
                         />
                     </Form.Group>
-                    
-                        <Button variant="danger" onClick={props.onHide}>
-                            Cancelar
-                        </Button>
-                        <Button type="submit" >Actualizar</Button>
 
-                    
+                    <Button variant="danger" onClick={props.onHide}>
+                        Cancelar
+                    </Button>
+                    <Button type="submit" >Actualizar</Button>
+
+
                 </Form>
             </Modal.Body>
             <Modal.Footer></Modal.Footer>
