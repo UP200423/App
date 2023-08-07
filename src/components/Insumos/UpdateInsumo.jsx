@@ -9,7 +9,7 @@ import UpdateInsumoModal from "./UpdateInsumoModal";
 
 
 
-function UpdateInsumo({id, nombre, tipo, unidad, descripcion, cantidad}) {
+function UpdateInsumo({id, id_tipo, nombre, tipo, unidad, unidad_id, descripcion, cantidad}) {
   // nombre={nombre}
   //     id={id}
   //     tipo={tipo}
@@ -43,13 +43,15 @@ function UpdateInsumo({id, nombre, tipo, unidad, descripcion, cantidad}) {
 
         unidadesmedida= {unidadesMedida}
         show={modalShow}
-        backdrop="static"
+        backdrop={true}
         onHide={() => setModalShow(false)}
         tipoinsumo = {tipoInsumo}
         nombre={nombre}
         id={id}
+        id_tipo={id_tipo}
         tipo={tipo}
         unidad={unidad}
+        unidad_id={unidad_id}
         descripcion={descripcion}
         cantidad={cantidad}
 

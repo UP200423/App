@@ -113,9 +113,8 @@ function AddProductoModal(props) {
                             onChange={(e) => {
                                 setTipo(e.target.value);
                                 setMostrarOtro(e.target.value == nuevo_tipo_id);
-                                //setMostrarOtro(true);
-                                console.log("ntid " + nuevo_tipo_id);
-                                console.log("mo " + mostrarOtro);
+                                //console.log("ntid " + nuevo_tipo_id);
+                                //console.log("mo " + mostrarOtro);
                             }}
                         >
                             <option value={-1} disabled>
