@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonIcon } from '@ionic/react';
+import { MdFastfood } from 'react-icons/md';
 
 import './Estadisticas.css';
 
@@ -13,7 +13,8 @@ const CardBox = ({ cardData }) => {
             <div className="cardName">{card.cardName}</div>
           </div>
           <div className="iconBx">
-            <IonIcon name={card.iconName} />
+            {/* <IonIcon name={card.iconName} /> */}
+            <MdFastfood name={card.iconName}/>
           </div>
         </div>
       ))}
